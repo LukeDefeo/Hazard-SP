@@ -7,7 +7,6 @@ import android.util.Log;
 import com.defeo.luke.hazardsp.Activities.R;
 import com.defeo.luke.hazardsp.Client.Client;
 import com.defeo.luke.hazardsp.GameEngine.*;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.locks.Lock;
@@ -22,7 +21,6 @@ import java.util.concurrent.locks.ReentrantLock;
 public class EventHandler {
 
     public enum Sounds {EXPLOSION, MARCHING, VICTORY, ENDGAME, FORTIFY,}
-
     MapView gameView;
     ServerGame game;
     Player player;
@@ -46,7 +44,7 @@ public class EventHandler {
         this.gameView = view;
         game = Client.get().getGame();
         player = Client.get().getGame().getCurrentPlayerTurn();
-        messageFactory = new MessageFactory(this, game);
+        messageFactory = new MessageFactory();
         territorySprites = gameView.getSprites().getTerritorySprites();
         context = view.getContext();
         mp = new MediaPlayer();
@@ -195,6 +193,17 @@ public class EventHandler {
                                 Log.i("TOUCH", "5");
                                 messageFactory.sendReinforceMessage(territoryObject, this.player);
                                 //so the player cant tap quickly before the response sets this
+                                this.player.setNoOfArmiesToPlace(this.player.getNoOfArmiesToPlace() - 1);
+                                territoryObject.incrementNoOfArmiesPresent();
+                                territorySprite.setDimmed();
+                                playMarchingSound();
+//                                try {
+//                                    Thread.sleep(500);
+//                                    Log.i("EVENT", "SLEEP SUCCESS");
+//                                } catch (InterruptedException e) {
+//                                    Log.i("EVENT","SLEEPFAILED");
+//                                }
+                                territorySprite.setNormal();
                                 refreshScreen();
                             }
                         }
@@ -215,19 +224,15 @@ public class EventHandler {
                                     territoryAttacked = true;
                                     isTerritoryHighlighted = false;
                                     potentialMoveInTerritory = attackableTerritory;
-                                    if (game.getCurrentPlayerTurn().getCurrentPhase() == Player.Phase.MOVE_IN) {
-                                        highlightForMoveIn(highlightedTerritory.getTerritory(), attackableTerritory);
-                                        playSound(EventHandler.Sounds.VICTORY);
-                                    } else {
-                                        setGUINormal();
-                                        refreshScreen();
-                                        isTerritoryHighlighted = false;
-
-                                    }
+                                    setGUINormal();
+                                    refreshScreen();
                                     break;      //is more efficient this way!
                                 }
                             }
-
+                            //territory not attackable
+                            isTerritoryHighlighted = false;
+                            setGUINormal();
+                            refreshScreen();
 
                         } else {
                             Log.i("TOUCH", "2");
@@ -255,7 +260,6 @@ public class EventHandler {
 
                                     for (TerritorySprite attackbleTerritorySprite : attackbleTerritorySprites) {
                                         attackbleTerritorySprite.setNormal();
-
                                     }
 
                                     highlightedTerritory = territorySprite;
