@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- sxa287
+     Map: http://www.colourbox.com/image/old-grunge-world-map-on-canvas-image-1507371
+-->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/hzworld"
+    android:orientation="horizontal"
+    android:paddingTop="120dip" >
+
+    <Button
+        android:id="@+id/button_help"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginBottom="87dp"
+        android:layout_marginLeft="240dp"
+        android:onClick="helpButton"
+        android:text="@string/button_help"
+        android:textColor="#A52A2A" />
+
+    <Button
+        android:id="@+id/button_singlePlayer"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/button_help"
+        android:layout_alignLeft="@+id/button_help"
+        android:layout_marginBottom="30dp"
+        android:onClick="singlePlayerButton"
+        android:text="@string/button_single_player"
+        android:textColor="#A52A2A" />
+
+    <Button
+        android:id="@+id/button_multiplayer"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/button_singlePlayer"
+        android:layout_alignBottom="@+id/button_singlePlayer"
+        android:layout_marginLeft="70dp"
+        android:layout_toRightOf="@+id/button_singlePlayer"
+        android:onClick="multiplayerButton"
+        android:text="@string/button_multiplayer"
+        android:textColor="#A52A2A" />
+
+    <Button
+        android:id="@+id/button_credits"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/button_multiplayer"
+        android:layout_below="@+id/button_singlePlayer"
+        android:onClick="creditsButton"
+        android:text="@string/button_Credits"
+        android:textColor="#A52A2A" />
+
+</RelativeLayout>

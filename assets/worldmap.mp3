@@ -1,0 +1,42 @@
+Egypt,Middle East,Southern Europe,North Africa,East Africa,Middle East
+East Africa,Egypt,North Africa,Central Africa,South Africa,Madagascar,Middle East
+Madagascar,South Africa,East Africa
+South Africa,Central Africa,Madagascar,East Africa
+Central Africa,North Africa,South Africa,East Africa
+North Africa,Brazil,Western Europe,Southern Europe,Central Africa,Egypt,East Africa
+Brazil,Venezuela,Peru,Argentina,North Africa
+Argentina,Peru,Brazil
+Peru,Venezuela,Argentina,Brazil
+Venezuela,Central America,Peru,Brazil
+Central America,Western United States,Eastern United States,Venezuela
+Western United States,Alberta,Central America,Eastern United States,Ontario
+Eastern United States,Ontario,Western United States,Central America,Eastern Canada
+Eastern Canada,Ontario,Eastern United States,Greenland
+Alaska,Kamchatka,Alberta,Northwest Territory
+Alberta,Northwest Territory,Alaska,Western United States,Ontario
+Ontario,Northwest Territory,Alberta,Western United States,Eastern United States,Eastern Canada,Greenland
+Northwest Territory,Alaska,Alberta,Ontario,Greenland
+Greenland,Iceland,Northwest Territory,Ontario,Eastern Canada
+Great Britain,Iceland,Scandinavia,Northern Europe,Western Europe
+Iceland,Greenland,Scandinavia,Great Britain
+Scandinavia,Ukraine,Iceland,Great Britain,Northern Europe
+Northern Europe,Scandinavia,Great Britain,Ukraine,Southern Europe,Western Europe
+Ukraine,Scandinavia,Northern Europe,Southern Europe,Middle East,Afghanistan,Ural
+Western Europe,Great Britain,North Africa,Northern Europe,Southern Europe
+Southern Europe,Northern Europe,Western Europe,North Africa,Egypt,Middle East,Ukraine
+Middle East,Ukraine,Southern Europe,Egypt,East Africa,India,Afghanistan
+Afghanistan,Ukraine,Middle East,India,China,Ural
+India,Afghanistan,Middle East,Southeast Asia,China
+Southeast Asia,China,India,Indonesia
+Indonesia,Southeast Asia,Western Australia,New Guinea
+Western Australia,Indonesia,Eastern Australia,New Guinea
+Eastern Australia,New Guinea,Western Australia
+New Guinea,Western Australia,Indonesia,Eastern Australia,
+China,Siberia,Ural,Afghanistan,India,Southeast Asia,Mongolia
+Ural,Ukraine,Afghanistan,China,Siberia
+Siberia,Ural,China,Mongolia,Irkutsk,Yakutsk
+Mongolia,Irkutsk,Siberia,China,Japan,Kamchatka
+Japan,Kamchatka,Mongolia
+Irkutsk,Yakutsk,Siberia,Mongolia,Kamchatka
+Yakutsk,Siberia,Irkutsk,Kamchatka
+Kamchatka,Yakutsk,Irkutsk,Mongolia,Japan,Alaska

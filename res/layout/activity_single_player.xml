@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+        android:orientation="vertical"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" xmlns:android="http://schemas.android.com/apk/res/android"
+        android:background="#4D2605">
+    <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="41dp"
+            android:text="@string/single_player"
+            android:id="@+id/textView" android:layout_gravity="left|center_vertical" android:textSize="40dp"/>
+    <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="New Button"
+            android:onClick="button"
+            android:id="@+id/button" android:layout_gravity="left|center_vertical"/>
+</LinearLayout>

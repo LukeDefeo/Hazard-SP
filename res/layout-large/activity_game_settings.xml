@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- sxa287 -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#4D2605"
+    android:orientation="horizontal" >
+
+    <TextView
+        android:id="@+id/game_settings"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="10dip"
+        android:paddingLeft="10dip"
+        android:paddingTop="10dip"
+        android:text="@string/game_settings"
+        android:textSize="40dp" />
+    
+    <TextView
+        android:id="@+id/no_of_ai"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/game_settings"
+        android:paddingLeft="12dip"
+        android:paddingRight="10dip"
+        android:paddingTop="7dip"
+        android:text="@string/no_of_ai"
+        android:textSize="20dp" />
+
+    <EditText
+        android:id="@+id/enter_no_of_ai"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/no_of_ai"
+        android:layout_alignBottom="@+id/no_of_ai"
+        android:layout_alignLeft="@+id/game_settings_cancel"
+        android:ems="10"
+        android:inputType="number"
+        android:maxLength="1" />
+
+    <TextView
+        android:id="@+id/timeout_settings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/enter_no_of_ai"
+        android:layout_marginTop="16dp"
+        android:paddingLeft="12dip"
+        android:paddingRight="10dip"
+        android:paddingTop="9dip"
+        android:text="@string/timeout_settings"
+        android:textSize="20dp" />
+
+    <CheckBox
+        android:id="@+id/checkBox_timeout_settings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/timeout_settings"
+        android:layout_alignBottom="@+id/timeout_settings"
+        android:layout_alignLeft="@+id/enter_no_of_ai" />
+
+    <TextView
+        android:id="@+id/timeout_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/checkBox_timeout_settings"
+        android:layout_marginTop="21dp"
+        android:paddingLeft="12dip"
+        android:paddingRight="10dip"
+        android:paddingTop="7dip"
+        android:text="@string/timeout_time"
+        android:textSize="20dp" />
+
+    <EditText
+        android:id="@+id/enter_timeout_time"
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/timeout_time"
+        android:layout_alignBottom="@+id/timeout_time"
+        android:layout_alignLeft="@+id/checkBox_timeout_settings"
+        android:ems="10"
+        android:inputType="textVisiblePassword"
+        android:maxLength="8" >
+    </EditText>
+
+    <Button
+        android:id="@+id/game_settings_confirm"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="100dip"
+        android:onClick="confirm"
+        android:text="@string/confirm"
+        android:textColor="#A52A2A" />
+
+    <Button
+        android:id="@+id/game_settings_cancel"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="100dip"
+        android:onClick="cancel"
+        android:text="@string/cancel"
+        android:textColor="#A52A2A" />
+
+</RelativeLayout>

@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- sxa287 -->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#4D2605"
+    android:orientation="horizontal"
+    android:paddingBottom="10dip" >
+
+    <TextView
+        android:id="@+id/userinfo"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="30dip"
+        android:paddingLeft="10dip"
+        android:paddingTop="10dip"
+        android:text="@string/userinfo"
+        android:textSize="40dp" />
+
+    <TextView
+        android:id="@+id/userinfo_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/userinfo"
+        android:paddingLeft="12dip"
+        android:paddingRight="10dip"
+        android:paddingTop="7dip"
+        android:text="@string/username"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/userinfo_input_username"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/userinfo_username"
+        android:layout_alignBottom="@+id/userinfo_username"
+        android:layout_marginLeft="20dp"
+        android:layout_toRightOf="@+id/userinfo_score"
+        android:paddingLeft="12dip"
+        android:paddingRight="10dip"
+        android:paddingTop="7dip"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/userinfo_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/userinfo_username"
+        android:paddingLeft="12dip"
+        android:paddingRight="10dip"
+        android:paddingTop="25dip"
+        android:text="@string/score"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/userinfo_win"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/userinfo_username"
+        android:layout_toRightOf="@+id/userinfo_score"
+        android:paddingLeft="12dip"
+        android:paddingRight="10dip"
+        android:paddingTop="25dip"
+        android:text="@string/win"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/userinfo_lose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/userinfo_win"
+        android:layout_below="@+id/userinfo_win"
+        android:paddingLeft="12dip"
+        android:paddingRight="10dip"
+        android:paddingTop="25dip"
+        android:text="@string/loss"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/userinfo_input_lose"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/userinfo_lose"
+        android:layout_alignBottom="@+id/userinfo_lose"
+        android:layout_toRightOf="@+id/userinfo_win"
+        android:paddingLeft="12dip"
+        android:paddingRight="10dip"
+        android:paddingTop="25dip"
+        android:textSize="20dp" />
+
+    <TextView
+        android:id="@+id/userinfo_input_win"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/userinfo_input_lose"
+        android:layout_below="@+id/userinfo_input_username"
+        android:paddingLeft="12dip"
+        android:paddingRight="10dip"
+        android:paddingTop="25dip"
+        android:textSize="20dp" />
+    
+    <Button
+        android:id="@+id/button_userinfo_back"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="16dp"
+        android:layout_marginRight="18dp"
+        android:layout_marginTop="7dp"
+        android:onClick="back"
+        android:text="@string/button_back"
+        android:textColor="#A52A2A" />
+
+</RelativeLayout>
