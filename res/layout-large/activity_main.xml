@@ -30,7 +30,7 @@
         android:layout_alignLeft="@+id/button_help"
         android:layout_marginBottom="30dp"
         android:onClick="singlePlayerButton"
-        android:text="@string/button_local_game"
+        android:text="@string/button_single_player"
         android:textColor="#A52A2A" />
 
     <Button
@@ -42,7 +42,7 @@
         android:layout_marginLeft="70dp"
         android:layout_toRightOf="@+id/button_singlePlayer"
         android:onClick="multiplayerButton"
-        android:text="@string/button_network_Game"
+        android:text="@string/button_multiplayer"
         android:textColor="#A52A2A" />
 
     <Button

@@ -19,8 +19,8 @@
     <string name="enter_email">Enter email</string>
     <string name="confirm">Confirm</string>
     <string name="cancel">Cancel</string>
-    <string name="button_local_game">Local Game</string>
-    <string name="button_network_Game">Network Game</string>
+    <string name="button_single_player">Single Player</string>
+    <string name="button_multiplayer">Mulitplayer</string>
     <string name="refresh">Refresh</string>
     <string name="button_help">Help</string>
     <string name="userinfo">User Info.</string>
@@ -47,7 +47,6 @@
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_reconnect">ReconnectActivity</string>
     <string name="title_activity_reconnect_login">ReconnectLoginActivity</string>
-    <string name="single_player_activity">Single Player</string>
-    <string name="local_game">Local Game</string>
+    <string name="single_player_activity">Single Player</string><string name="single_player">Single Player</string>
 
 </resources>
