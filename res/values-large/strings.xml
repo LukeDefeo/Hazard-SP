@@ -23,8 +23,8 @@
     <string name="enter_email">Enter email</string>
     <string name="confirm">Confirm</string>
     <string name="cancel">Cancel</string>
-    <string name="button_single_player">Create Game</string>
-    <string name="button_multiplayer">Join Game</string>
+    <string name="button_local_game">Create Game</string>
+    <string name="button_network_Game">Join Game</string>
     <string name="refresh">Refresh</string>
     <string name="button_help">User Info</string>
     <string name="userinfo">User Info.</string>
@@ -50,6 +50,7 @@
     <string name="no_of_ai">Number of AIs: </string>
     <string name="hello_world">Hello world!</string>
     <string name="title_activity_reconnect">ReconnectActivity</string>
-    <string name="single_player_activity">Single Player</string><string name="single_player">Single Player</string>
+    <string name="single_player_activity">Single Player</string>
+    <string name="local_game">Single Player</string>
 
 </resources>
