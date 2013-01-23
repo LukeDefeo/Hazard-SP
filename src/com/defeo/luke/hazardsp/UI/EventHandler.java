@@ -43,7 +43,6 @@ public class EventHandler {
         Client.get().setEventHandler(this);
         this.gameView = view;
         game = Client.get().getGame();
-        String playerName = Client.get().getClientName();
         player = Client.get().getGame().getCurrentPlayerTurn();
         messageFactory = new MessageFactory();
         territorySprites = gameView.getSprites().getTerritorySprites();
