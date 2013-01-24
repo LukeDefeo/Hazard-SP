@@ -31,7 +31,7 @@ public class ServerGame extends Game {
             playerCycle.add(playerCycleIterator.next().getValue());
         }
         this.playerTurnIterator = playerCycle.iterator();
-
+        assignNextPlayerToGo();
     }
 
     /**

@@ -53,6 +53,7 @@ public class MessageFactory {
 
     public void sendEndTurnMessage(Player player) {
         game.endTurn();
+        eventHandler.setPlayer(game.getCurrentPlayerTurn());
         System.out.println("sending endTurn message");
     }
 

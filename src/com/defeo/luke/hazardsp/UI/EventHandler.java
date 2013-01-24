@@ -406,9 +406,7 @@ public class EventHandler {
                 setGUINormal();
                 refreshScreen();
                 Log.i("EVENT HANDDER", "in attack phase sending end attack message");
-            }
-
-            if (player.getCurrentPhase() == Player.Phase.FORTIFY) {
+            }else if (player.getCurrentPhase() == Player.Phase.FORTIFY) {
                 messageFactory.sendEndTurnMessage(this.player);
                 fortifyInProgress = false;
                 setGUINormal();
@@ -617,5 +615,9 @@ public class EventHandler {
 
     public void setTerritoryAttacked(boolean territoryAttacked) {
         this.territoryAttacked = territoryAttacked;
+    }
+
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 }
