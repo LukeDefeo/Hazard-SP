@@ -40,6 +40,7 @@ public class EventHandler {
     private Context context;
     Lock lock;
     boolean territoryAttacked = false;
+    int tempMoveInCount;
 
     public EventHandler(MapView view) {
         Client.get().setEventHandler(this);
@@ -51,7 +52,9 @@ public class EventHandler {
         context = view.getContext();
         mp = new MediaPlayer();
         lock = new ReentrantLock();
+        tempMoveInCount = 0;
     }
+
 
     public void longTouchEvent(TerritorySprite ts) {
         Log.i("EVENT HANDLER", "LONG TOUCH EVENT");
@@ -85,8 +88,19 @@ public class EventHandler {
                                 territoryAttacked = true;
                                 isTerritoryHighlighted = false;
                                 potentialMoveInTerritory = attackableTerritory;
-                                setGUINormal();
-                                refreshScreen();
+                                if (game.getCurrentPlayerTurn().getCurrentPhase() == Player.Phase.MOVE_IN) {
+                                    highlightForMoveIn(highlightedTerritory.getTerritory(), attackableTerritory);
+                                    playSound(EventHandler.Sounds.VICTORY);
+                                } else {
+                                    setGUINormal();
+                                    refreshScreen();
+                                    if (this.player.getTerritoriesOwned().contains(potentialMoveInTerritory)) {
+                                        playVictorySound();
+                                    } else {
+                                        playExplosionSound();
+                                    }
+                                    isTerritoryHighlighted = false;
+                                }
                                 break;      //is more efficient this way!
                             }
                         }
@@ -107,6 +121,7 @@ public class EventHandler {
                         Log.i("EVENT HANDLDER", "DO LONG MOVE ");
                         sourceTerritory.setNoOfArmiesPresent(sourceArmiesMove + targetArmiesMove - 1);
                         targetTerritory.setNoOfArmiesPresent(1);
+                        tempMoveInCount = 0;
                         refreshScreen();
                         break;
                     }
@@ -114,6 +129,7 @@ public class EventHandler {
                         Log.i("EVENT HANDLDER", "DO LONG MOVE");
                         targetTerritory.setNoOfArmiesPresent(sourceArmiesMove + targetArmiesMove - 1);
                         sourceTerritory.setNoOfArmiesPresent(1);
+                        tempMoveInCount = sourceArmiesMove - 1;
                         refreshScreen();
                     }
 
@@ -194,6 +210,7 @@ public class EventHandler {
                             if (this.player.getNoOfArmiesToPlace() > 0) {
                                 Log.i("TOUCH", "5");
                                 messageFactory.sendReinforceMessage(territoryObject, this.player);
+                                playMarchingSound();
                                 //so the player cant tap quickly before the response sets this
                                 refreshScreen();
                             }
@@ -221,6 +238,11 @@ public class EventHandler {
                                     } else {
                                         setGUINormal();
                                         refreshScreen();
+                                        if (this.player.getTerritoriesOwned().contains(potentialMoveInTerritory)) {
+                                            playVictorySound();
+                                        } else {
+                                            playExplosionSound();
+                                        }
                                         isTerritoryHighlighted = false;
 
                                     }
@@ -279,6 +301,7 @@ public class EventHandler {
                                     //  Log.i("EVENT HANDLER", "5");
                                     sourceTerritory.incrementNoOfArmiesPresent();
                                     targetTerritory.decrementNoOfArmiesPresent();
+                                    tempMoveInCount--;
                                 }
                             }
                             if (territoryObject.equals(targetTerritory)) {
@@ -287,12 +310,15 @@ public class EventHandler {
                                     //     Log.i("EVENT HANDLER", "5 ");
                                     targetTerritory.incrementNoOfArmiesPresent();
                                     sourceTerritory.decrementNoOfArmiesPresent();
+                                    tempMoveInCount++;
                                 }
                             }
                         } else {
                             Log.i("EVENT HANDLER", "SENding move IN MESSAGE ");
-
-                            messageFactory.sendMoveIntoTerritoryMessage((targetTerritory.getNoOfArmiesPresent() - 1), sourceTerritory, targetTerritory, this.player);
+                            sourceTerritory.addArmies(tempMoveInCount);
+                            targetTerritory.removeArmies(tempMoveInCount);
+                            messageFactory.sendMoveIntoTerritoryMessage((tempMoveInCount), sourceTerritory, targetTerritory, this.player);
+                            tempMoveInCount = 0;
                             isTerritoryHighlighted = false;
                             setGUINormal();
                         }
@@ -406,7 +432,7 @@ public class EventHandler {
                 setGUINormal();
                 refreshScreen();
                 Log.i("EVENT HANDDER", "in attack phase sending end attack message");
-            }else if (player.getCurrentPhase() == Player.Phase.FORTIFY) {
+            } else if (player.getCurrentPhase() == Player.Phase.FORTIFY) {
                 messageFactory.sendEndTurnMessage(this.player);
                 fortifyInProgress = false;
                 setGUINormal();
@@ -423,7 +449,10 @@ public class EventHandler {
             switch (game.getCurrentPlayerTurn().getCurrentPhase()) {
                 case MOVE_IN:
                     Log.i("EVENT HANDLER", "SENding move IN MESSAGE ");
-                    messageFactory.sendMoveIntoTerritoryMessage((targetTerritory.getNoOfArmiesPresent() - 1), sourceTerritory, targetTerritory, this.player);
+                    sourceTerritory.addArmies(tempMoveInCount);
+                    targetTerritory.removeArmies(tempMoveInCount);
+                    messageFactory.sendMoveIntoTerritoryMessage((tempMoveInCount), sourceTerritory, targetTerritory, this.player);
+                    tempMoveInCount = 0;
                     isTerritoryHighlighted = false;
                     setGUINormal();
                     refreshScreen();
