@@ -247,7 +247,7 @@ public class BobLogic extends Thread {
             System.out.println("number of attackable territories is: " + attackable.size());
             eventHandler.refreshScreen();
             try {
-                Thread.sleep(1500);
+                Thread.sleep(2000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -309,7 +309,7 @@ public class BobLogic extends Thread {
 
                 //if attack has been defeated, decide where to move armies depending on whether attack
                 //and attackFrom are border territories
-                if (moveIn) {
+                if (me.getCurrentPhase()==Player.Phase.MOVE_IN) {
                     if (isBorderTerritory(attackFrom) == false && isBorderTerritory(attack) == true) {
                         //move all armies into attack
 
@@ -354,6 +354,13 @@ public class BobLogic extends Thread {
         moveIn = false;
 
         messageFactory.sendEndAttackMessage(me);
+        eventHandler.refreshScreen();
+        try {
+            Thread.sleep(1500);
+        } catch (InterruptedException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
+
         System.out.println("Sent end of attack message");
 
     }
@@ -452,6 +459,7 @@ public class BobLogic extends Thread {
             //}
 
             messageFactory.sendFortifyMessage(me, from, fortify, from.getNoOfArmiesPresent(), fortify.getNoOfArmiesPresent());
+            eventHandler.playHelicopterSound();
             System.out.println("Fortifying " + fortify.getName());
         } else {
             System.out.println("no territories to fortify");

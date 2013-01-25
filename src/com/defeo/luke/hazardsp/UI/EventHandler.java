@@ -59,6 +59,8 @@ public class EventHandler {
     }
 
 
+
+
     public void longTouchEvent(TerritorySprite ts) {
         Log.i("EVENT HANDLER", "LONG TOUCH EVENT");
         if (this.player.getUserName().equals(game.getCurrentPlayerTurn().getUserName())) {
@@ -620,6 +622,7 @@ public class EventHandler {
     // Source: http://www.allmusiclibrary.com/free_sound_effects/victory_fanfare.mp3
     public void playEndGameSound() {
         // Play end game sound
+
         if (mp.isPlaying())
             mp.stop();
         mp = MediaPlayer.create(context, R.raw.end_game);
@@ -638,12 +641,19 @@ public class EventHandler {
     }
 
     public void soundDuration(int time) {
-        Handler h = new Handler();
-        h.postDelayed(new Runnable() {
+        final int time1 = time;
+        Client.get().getCurrentActivity().runOnUiThread(new Runnable() {
+            @Override
             public void run() {
-                mp.stop();
+                Handler h = new Handler();
+                h.postDelayed(new Runnable() {
+                    public void run() {
+                        mp.stop();
+                    }
+                }, time1);
             }
-        }, time);
+        });
+
     }
 
     public boolean isTerritoryAttacked() {

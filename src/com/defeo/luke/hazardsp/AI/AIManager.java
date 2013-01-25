@@ -44,12 +44,17 @@ public class AIManager {
                         public void run() {
 
                             try {
+                                Thread.sleep(750);
                                 logicTemp.reinforce();
                                 Thread.sleep(500);
-
+                                eventHandler.refreshScreen();
                                 logicTemp.attack();
-
+                                Thread.sleep(500);
+                                eventHandler.refreshScreen();
                                 logicTemp.fortify();
+                                eventHandler.refreshScreen();
+                                Thread.sleep(500);
+
 
                             } catch (InterruptedException e) {
                                 e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
@@ -58,7 +63,8 @@ public class AIManager {
 
                         }
                     };
-                    runnable.run();
+                    Thread thread = new Thread(runnable);
+                    thread.start();
 
                 }
             }
