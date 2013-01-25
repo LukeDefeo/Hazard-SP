@@ -18,20 +18,25 @@ public class Player implements Serializable {
     private Phase currentPhase;
     private List<Territory> territoriesOwned; //this should be a map :(
     List<BonusCard> bonusCards;
+    private boolean AI;
 
     private final List<Continent> continents;   //for calculation noOfArmies to place
     private int guiID;           // only used so the GUI can link itself to this object,
 
-    public Player(String userName, List<Continent> continents,int GUIId) {
+    public Player(String userName, List<Continent> continents,int GUIId, boolean isAI) {
         this.userName = userName;
         this.currentPhase = Phase.PREGAME;
         this.territoriesOwned = new ArrayList<Territory>();
         this.bonusCards = new ArrayList<BonusCard>();
         this.continents = continents;
         this.guiID = GUIId;
+        this.AI = isAI;
 
     }
 
+    public boolean isAI() {
+        return AI;
+    }
 
     @Override
     public String toString() {

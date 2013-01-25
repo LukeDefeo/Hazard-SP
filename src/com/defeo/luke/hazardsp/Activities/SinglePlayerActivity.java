@@ -30,9 +30,12 @@ public class SinglePlayerActivity extends Activity {
         List<String> playersTemp = new ArrayList<String>();
         playersTemp.add("player1");
         playersTemp.add("player2");
+        List<String> aiTemp = new ArrayList<String>();
+        aiTemp.add("AI-1");
+        aiTemp.add("AI-2");
         GameUpdater gameUpdater = new GameUpdater(playersTemp,this);
         Client.get().setGameUpdater(gameUpdater);
-        gameUpdater.startGame(playersTemp);
+        gameUpdater.startGame(playersTemp,aiTemp);
 
         startActivity(intent);
 

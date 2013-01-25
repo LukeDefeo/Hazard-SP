@@ -20,7 +20,7 @@ public class Territory implements Serializable {
 
     public Territory(String territoryName,int guiID) {
         this.name = territoryName;
-        this.owner = new Player("NULL PLAYER", null,0);
+        this.owner = new Player("NULL PLAYER", null,0,false);
         this.guiID = guiID;
     }
 

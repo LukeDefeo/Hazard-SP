@@ -4,6 +4,7 @@ import android.content.Context;
 import android.media.MediaPlayer;
 import android.os.Handler;
 import android.util.Log;
+import com.defeo.luke.hazardsp.AI.AIManager;
 import com.defeo.luke.hazardsp.Activities.R;
 import com.defeo.luke.hazardsp.Client.Client;
 import com.defeo.luke.hazardsp.GameEngine.*;
@@ -41,6 +42,7 @@ public class EventHandler {
     Lock lock;
     boolean territoryAttacked = false;
     int tempMoveInCount;
+    AIManager AIManager;
 
     public EventHandler(MapView view) {
         Client.get().setEventHandler(this);
@@ -53,6 +55,7 @@ public class EventHandler {
         mp = new MediaPlayer();
         lock = new ReentrantLock();
         tempMoveInCount = 0;
+        AIManager = new AIManager(messageFactory, game, this);
     }
 
 
@@ -438,11 +441,16 @@ public class EventHandler {
                 setGUINormal();
                 refreshScreen();
                 isTerritoryHighlighted = false;
+                if (game.getCurrentPlayerTurn().isAI()) {
+                    AIManager.runAI(game.getCurrentPlayerTurn());
+                }
+                refreshScreen();
                 Log.i("EVENT HANDDER", "in fortify phase sending end attack message");
             }
 
 
         } else if (item.Type == Sprite.SpriteType.BACKGROUND) {
+            System.out.println("Current player is: " + game.getCurrentPlayerTurn().toString());
 
 
             Log.i("EVENT HANDDER", "Background Clicked");

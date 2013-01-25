@@ -117,7 +117,7 @@ public class GameUpdater {
     }
 
     // When the game is started, initialise the game
-    public synchronized void startGame(List<String> humanPlayers) {
+    public synchronized void startGame(List<String> humanPlayers, List<String> aiTemp) {
         ClientWorldBuilder worldBuilder = new ClientWorldBuilder(context);
         Map<String, Territory> world = worldBuilder.readWorldFile();
         ClientContinentBuilder continentBuilder = new ClientContinentBuilder(world, context);
@@ -126,12 +126,19 @@ public class GameUpdater {
 
         int playerCounter = 1;
         for (String playerID : humanPlayers) {
-            Player player = new Player(playerID, continents,playerCounter);
+            Player player = new Player(playerID, continents,playerCounter,false);
             playerCounter++;
             Log.i("GAMEUPDDATER", " player in " + player.getUserName());
             players.put(player.getUserName(), player);
         }
-        Player firstPlayerToGo = players.get("player1");
+
+        for (String ai : aiTemp) {
+            Player player = new Player(ai, continents,playerCounter,true);
+            playerCounter++;
+            players.put(player.getUserName(), player);
+        }
+
+        Player firstPlayerToGo = players.get(humanPlayers.get(0));
         firstPlayerToGo.setCurrentPhase(Player.Phase.REINFORCE);
         game = new ServerGame(world, continents, players, firstPlayerToGo);
         game.initialiseGame();
