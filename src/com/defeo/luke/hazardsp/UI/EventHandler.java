@@ -587,7 +587,7 @@ public class EventHandler {
     }
 
     // Source: http://soundbible.com/1986-Bomb-Exploding.html
-    private void playExplosionSound() {
+    public void playExplosionSound() {
         // Play the explosion sound
         //sti
         if (mp.isPlaying())
@@ -598,7 +598,7 @@ public class EventHandler {
     }
 
     // Source: http://soundbible.com/1329-Soldiers-Marching.html
-    private void playMarchingSound() {
+    public void playMarchingSound() {
         // Play the marching sound
         if (mp.isPlaying())
             mp.stop();
