@@ -215,6 +215,7 @@ public class BobLogic extends Thread {
         int timesToLoop = me.getNoOfArmiesToPlace();
         for (int j = 0; j < timesToLoop; j++) {
             messageFactory.sendReinforceMessage(first, me);
+            eventHandler.flashTerritory(first);
             eventHandler.playMarchingSound();
             try {
                 System.out.println("sleeping1");
@@ -245,9 +246,8 @@ public class BobLogic extends Thread {
             //calculate attackable territories
             List<Pair<Territory, Territory>> attackable = getAttackable();
             System.out.println("number of attackable territories is: " + attackable.size());
-            eventHandler.refreshScreen();
             try {
-                Thread.sleep(2000);
+                Thread.sleep(1750);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -261,19 +261,33 @@ public class BobLogic extends Thread {
                 System.out.println("territory to attack is " + attack.getName());
 
                 //attack Territory attack from Territory attackFrom
+
                 if (attackFrom.getNoOfArmiesPresent() > 3) {
+                    eventHandler.flashTerritory(attack,attackFrom);
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+                    }
                     messageFactory.sendAttackMessage(attackFrom, attack, me, attack.getOwner(), 3);
+                    eventHandler.playExplosionSound();
                     System.out.println("Attacking" + attack.getName() + " from " + attackFrom.getName() + " with 3 armies");
 
 
                 } else if (attackFrom.getNoOfArmiesPresent() == 3) {
+                    eventHandler.flashTerritory(attack,attackFrom);
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+                    }
                     messageFactory.sendAttackMessage(attackFrom, attack, me, attack.getOwner(), 2);
+                    eventHandler.playExplosionSound();
                     System.out.println("Attacking" + attack.getName() + " from " + attackFrom.getName() + " with 2 armies");
                 } else {
                     //moveIn = false;
                 }
-                eventHandler.playExplosionSound();
-                eventHandler.refreshScreen();
+                //eventHandler.refreshScreen();
 
 
                 //wait!
@@ -460,6 +474,7 @@ public class BobLogic extends Thread {
 
             messageFactory.sendFortifyMessage(me, from, fortify, from.getNoOfArmiesPresent(), fortify.getNoOfArmiesPresent());
             eventHandler.playHelicopterSound();
+
             System.out.println("Fortifying " + fortify.getName());
         } else {
             System.out.println("no territories to fortify");

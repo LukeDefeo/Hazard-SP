@@ -46,10 +46,8 @@ public class AIManager {
                             try {
                                 Thread.sleep(750);
                                 logicTemp.reinforce();
-                                Thread.sleep(500);
-                                eventHandler.refreshScreen();
                                 logicTemp.attack();
-                                Thread.sleep(500);
+                                Thread.sleep(2000);
                                 eventHandler.refreshScreen();
                                 logicTemp.fortify();
                                 eventHandler.refreshScreen();

@@ -59,7 +59,46 @@ public class EventHandler {
     }
 
 
+    public void flashTerritory(Territory territory) {
+        final TerritorySprite territorySprite = territorySprites.get(territory.getGuiID());
+        territorySprite.setDimmed();
+        refreshScreen();
+        Client.get().getCurrentActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Handler h = new Handler();
+                h.postDelayed(new Runnable() {
+                    public void run() {
+                        setGUINormal();
+                        refreshScreen();
+                    }
+                }, 350);
+            }
+        });
 
+    }
+
+    public void flashTerritory(Territory territory1, Territory territory2) {
+        final TerritorySprite territorySprite1 = territorySprites.get(territory1.getGuiID());
+        final TerritorySprite territorySprite2 = territorySprites.get(territory2.getGuiID());
+        setGUIDimmed();
+        refreshScreen();
+        territorySprite1.setNormal();
+        territorySprite2.setNormal();
+        Client.get().getCurrentActivity().runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                Handler h = new Handler();
+                h.postDelayed(new Runnable() {
+                    public void run() {
+                        setGUINormal();
+                        refreshScreen();
+                    }
+                }, 1750);
+            }
+        });
+
+    }
 
     public void longTouchEvent(TerritorySprite ts) {
         Log.i("EVENT HANDLER", "LONG TOUCH EVENT");
