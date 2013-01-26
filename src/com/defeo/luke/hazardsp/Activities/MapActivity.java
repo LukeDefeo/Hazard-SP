@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.DisplayMetrics;
 import android.util.Log;
+import android.widget.Toast;
 import com.defeo.luke.hazardsp.Client.Client;
 import com.defeo.luke.hazardsp.UI.MapView;
 
@@ -28,6 +29,8 @@ public class MapActivity extends HazardActivity {
         MapView mapView = new MapView(this, metrics.heightPixels, metrics.widthPixels);
         //Start the map!
         setContentView(mapView);
+        Toast toast = Toast.makeText(Client.get().getCurrentActivity(), "Tap on territories to reinforce", Toast.LENGTH_SHORT);
+        toast.show();
     }
 
     @Override

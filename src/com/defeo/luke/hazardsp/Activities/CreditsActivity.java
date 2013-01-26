@@ -10,7 +10,7 @@ import android.os.Bundle;
  * Time: 18:31
  * To change this template use File | Settings | File Templates.
  */
-public class CreditsActivity extends Activity {
+public class CreditsActivity extends HazardActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }

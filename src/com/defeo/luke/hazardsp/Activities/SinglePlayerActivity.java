@@ -18,7 +18,7 @@ import java.util.List;
  * Time: 18:31
  * To change this template use File | Settings | File Templates.
  */
-public class SinglePlayerActivity extends Activity {
+public class SinglePlayerActivity extends HazardActivity {
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

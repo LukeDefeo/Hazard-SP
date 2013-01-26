@@ -4,6 +4,7 @@ import android.content.Context;
 import android.media.MediaPlayer;
 import android.os.Handler;
 import android.util.Log;
+import android.widget.Toast;
 import com.defeo.luke.hazardsp.AI.AIManager;
 import com.defeo.luke.hazardsp.Activities.R;
 import com.defeo.luke.hazardsp.Client.Client;
@@ -43,6 +44,7 @@ public class EventHandler {
     boolean territoryAttacked = false;
     int tempMoveInCount;
     AIManager AIManager;
+    public boolean firstTurn = true;
 
     public EventHandler(MapView view) {
         Client.get().setEventHandler(this);
@@ -472,12 +474,17 @@ public class EventHandler {
 
             if (player.getCurrentPhase() == Player.Phase.ATTACK) {
                 messageFactory.sendEndAttackMessage(this.player);
+                if (firstTurn) {
+                    Toast toast = Toast.makeText(Client.get().getCurrentActivity(), "Tap a territory to fortify from", Toast.LENGTH_SHORT);
+                    toast.show();
+                }
                 isTerritoryHighlighted = false;
                 setGUINormal();
                 refreshScreen();
                 Log.i("EVENT HANDDER", "in attack phase sending end attack message");
             } else if (player.getCurrentPhase() == Player.Phase.FORTIFY) {
                 messageFactory.sendEndTurnMessage(this.player);
+                firstTurn = false;
                 fortifyInProgress = false;
                 setGUINormal();
                 refreshScreen();
@@ -487,6 +494,24 @@ public class EventHandler {
                 }
                 refreshScreen();
                 Log.i("EVENT HANDDER", "in fortify phase sending end attack message");
+            } else if (player.getCurrentPhase() == Player.Phase.REINFORCE) {
+                Toast toast = Toast.makeText(Client.get().getCurrentActivity(), "You must place all armies first", Toast.LENGTH_SHORT);
+                toast.show();
+            }
+
+
+        } else if (item.Type == Sprite.SpriteType.DISPLAY) {
+            if (game.getCurrentPlayerTurn().equals(player) && !player.isAI()) {
+                if (player.getCurrentPhase() == Player.Phase.REINFORCE) {
+                    Toast toast = Toast.makeText(Client.get().getCurrentActivity(), "Tap on territories to reinforce", Toast.LENGTH_SHORT);
+                    toast.show();
+                } else if (player.getCurrentPhase() == Player.Phase.ATTACK) {
+                    Toast toast = Toast.makeText(Client.get().getCurrentActivity(), "Tap on >>> to end attack", Toast.LENGTH_SHORT);
+                    toast.show();
+                } else if (player.getCurrentPhase() == Player.Phase.FORTIFY) {
+                    Toast toast = Toast.makeText(Client.get().getCurrentActivity(), "Tap on >>> to end turn", Toast.LENGTH_SHORT);
+                    toast.show();
+                }
             }
 
 

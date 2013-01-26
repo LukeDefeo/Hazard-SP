@@ -10,7 +10,7 @@ import android.os.Bundle;
  * Time: 18:30
  * To change this template use File | Settings | File Templates.
  */
-public class HelpActivity extends Activity {
+public class HelpActivity extends HazardActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
     }

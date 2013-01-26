@@ -193,6 +193,7 @@ public class MapView extends View {
                     break;
                 }
             }
+            System.out.println("firing display touch event1");
 
             //Check buttons
             if (!beenHandled) {
@@ -203,6 +204,15 @@ public class MapView extends View {
 
                     eventHandler.touchEvent(spriteFactory.getPlayerButtonSprites().get(0));
                     beenHandled = true;
+                }
+
+                for (ButtonSprite buttonSprite: spriteFactory.getButtonSprites()) {
+                    if (buttonSprite.isClicked(event.getX(), event.getY())) {
+                        buttonSprite.setDisplayType();
+                        eventHandler.touchEvent(buttonSprite);
+                        beenHandled = true;
+                        System.out.println("firing display touch event2");
+                    }
                 }
 
             }

@@ -9,6 +9,8 @@ import android.graphics.RectF;
  */
 public class DisplaySprite extends ButtonSprite {
 
+    private String text;
+
 	public DisplaySprite(Path inputPath, Paint inputLine, PaintPalette paintPalette, String text) {
 		super(inputPath, inputLine, paintPalette, text);
 		Type = SpriteType.DISPLAY;
@@ -17,5 +19,10 @@ public class DisplaySprite extends ButtonSprite {
 		this.path.computeBounds(bounds, true);
 		this.centreY = bounds.left;  
 		System.out.println("Bounds -" +this.centreY);
-	}
+        this.text = text;
+    }
+
+    public String getText() {
+        return text;
+    }
 }

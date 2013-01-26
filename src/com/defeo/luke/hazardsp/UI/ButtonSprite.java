@@ -38,6 +38,10 @@ public class ButtonSprite extends Sprite {
 		centreX = region.getBounds().centerY();
 	}
 
+    public void setDisplayType() {
+        super.Type = SpriteType.DISPLAY;
+    }
+
 	@Override
 	public Paint getPaint() {
 		Paint paint = null;

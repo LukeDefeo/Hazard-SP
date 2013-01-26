@@ -1,8 +1,12 @@
 package com.defeo.luke.hazardsp.GameEngine;
 
 
+import android.widget.Toast;
 import com.defeo.luke.hazardsp.Client.Client;
 import com.defeo.luke.hazardsp.UI.EventHandler;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -26,6 +30,13 @@ public class MessageFactory {
     	System.out.println("sending reinforce message: " +territory.getName()+ " " +owner.getUserName());
         game.reinforce(owner, territory);
         eventHandler.refreshScreen();
+        if (owner.getCurrentPhase() == Player.Phase.ATTACK) {
+            if (eventHandler.firstTurn) {
+                Toast toast = Toast.makeText(Client.get().getCurrentActivity(), "Tap a territory to attack from", Toast.LENGTH_SHORT);
+                toast.show();
+            }
+        }
+
     }
 
     public void sendAttackMessage(Territory attackingTerritory, Territory defendingTerritory, Player attacker, Player defender, int armies) {
@@ -33,6 +44,8 @@ public class MessageFactory {
     	System.out.println("sending attack message: " +attacker.getUserName());
         game.attack(attacker, defender, attackingTerritory, defendingTerritory, armies);
         eventHandler.refreshScreen();
+        List<String> some = new ArrayList<>();
+
 
     }
 
@@ -40,6 +53,7 @@ public class MessageFactory {
         game.moveIntoTerritory(owner, sourceTerritory, targetTerritory, armies);
         eventHandler.refreshScreen();
         System.out.println("sending moveIntoTerritory message: " + owner.getUserName());
+
     }
 
     public void sendFortifyMessage(Player owner, Territory sourceTerritory, Territory targetTerritory, int armiesSource,int armiesTarget) {

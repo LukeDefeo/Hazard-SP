@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.util.Log;
+import android.widget.Toast;
 import com.defeo.luke.hazardsp.Activities.MainActivity;
 import com.defeo.luke.hazardsp.Activities.R;
 import com.defeo.luke.hazardsp.GameEngine.*;
@@ -143,6 +144,7 @@ public class GameUpdater {
         game = new ServerGame(world, continents, players, firstPlayerToGo);
         game.initialiseGame();
         Client.get().setGame(game);
+
 
     }
 
